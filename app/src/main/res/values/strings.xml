@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AQI</string>
+    <string name="favorite_cities">Favoritos</string>
+
+    <string name="locations_text">Locais Salvos</string>
+    <string name="closer_location_text">Qualidade do ar na localização mais próxima</string>
+
+    <string name="edit_Text_Search">Buscar Local</string>
+
+</resources>
