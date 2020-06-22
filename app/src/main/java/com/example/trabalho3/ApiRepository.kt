@@ -1,4 +1,4 @@
-package com.example.trabalho3.api
+package com.example.trabalho3
 
 class ApiRepository {
     fun searchLocationByName (name: String) {}

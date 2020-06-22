@@ -1,11 +1,11 @@
-package com.example.trabalho3.adapter
+package com.example.trabalho3.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.trabalho3.Location
+import com.example.trabalho3.classes.location.Location
 import com.example.trabalho3.R
 import kotlinx.android.synthetic.main.city.view.*
 
@@ -17,6 +17,14 @@ class AdapterLocations (
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(context).inflate(R.layout.city, parent, false)
             return  ViewHolder(view)
+        }
+
+        fun getItem(position: Int): Location {
+            return list[position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return list[position].id
         }
 
         override fun getItemCount(): Int {

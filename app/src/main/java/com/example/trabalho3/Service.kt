@@ -1,7 +1,5 @@
 package com.example.trabalho3
 
-import com.example.trabalho3.api.ApiRepository
-
 class Service (val apiRepository: ApiRepository){
 
     fun saveLocation (id: String, name: String) {}

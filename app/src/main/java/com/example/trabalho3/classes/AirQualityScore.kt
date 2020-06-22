@@ -1,4 +1,4 @@
-package com.example.trabalho3
+package com.example.trabalho3.classes
 
 enum class AirQualityScore(val text: String) {
     BOM ("Bom"),

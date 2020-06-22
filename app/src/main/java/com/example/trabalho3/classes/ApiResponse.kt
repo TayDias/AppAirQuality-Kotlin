@@ -1,4 +1,4 @@
-package com.example.trabalho3.api
+package com.example.trabalho3.classes
 
 class ApiResponse (
     val aqi: Float,
