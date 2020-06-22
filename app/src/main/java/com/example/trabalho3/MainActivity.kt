@@ -51,12 +51,8 @@ class MainActivity : AppCompatActivity() {
             R.id.favorites -> {
                 val intent: Intent = Intent(this, FavoritesActivity::class.java)
 
-                //Problem: Formato do Array não pode ser objeto dinamico
-                //intent.putExtra("list", list)
-
-                //Alternativas
-                //intent.putStringArrayListExtra("idsList", locationsIdsListToStringList())
-                //intent.putStringArrayListExtra("namesList", locationsNamesListToStringList())
+                //Parcializable object
+                intent.putExtra("list", list)
 
                 startActivityForResult(intent, 1)
                 true
@@ -88,28 +84,4 @@ class MainActivity : AppCompatActivity() {
             val id = locationDao!!.insert(location)
         }
     }
-
-//    fun locationsIdsListToStringList(): ArrayList<String> {
-//        val ids: ArrayList<String> = ArrayList()
-//        var position: Int = 0
-//
-//        list.forEach {
-//            ids[position] = it.locationId
-//            position++
-//        }
-//
-//        return ids
-//    }
-//
-//    fun locationsNamesListToStringList(): ArrayList<String> {
-//        val names: ArrayList<String> = ArrayList()
-//        var position: Int = 0
-//
-//        list.forEach {
-//            names[position] = it.locationName
-//            position++
-//        }
-//
-//        return names
-//    }
 }

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trabalho3.classes.location.Location
 import com.example.trabalho3.R
 import com.example.trabalho3.adapters.AdapterLocations
-import com.example.trabalho3.classes.location.LocationDao
 
 class FavoritesActivity : AppCompatActivity() {
     var list = ArrayList<Location>()
@@ -17,19 +16,8 @@ class FavoritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 
-        val bundle = intent.extras
-        if(bundle != null) {
-            val temp: Any = arrayOf(bundle.get("list"))
-            val updatedList = temp as ArrayList<Location>
-
-            //Alternativas
-            //val arrayIds: ArrayList<String> = bundle.getStringArrayList("idsList")
-            //val arrayNames: ArrayList<String> = bundle.getStringArrayList("namesList")
-
-            //val test = getIntent().getSerializableExtra("list");
-
-            adapter = AdapterLocations(this, updatedList)
-        }
+        list = getIntent().getSerializableExtra("list") as ArrayList<Location>
+        adapter = AdapterLocations(this, list)
 
         adapter.notifyDataSetChanged()
 
