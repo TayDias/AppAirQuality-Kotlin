@@ -16,18 +16,17 @@ class FavoritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 
-        list = getIntent().getSerializableExtra("list") as ArrayList<Location>
+        val bundle = intent.extras
+        list = bundle?.getSerializable("list") as ArrayList<Location>
         adapter = AdapterLocations(this, list)
 
         adapter.notifyDataSetChanged()
 
-        //Recycle View and Adapter connection
+        //Recycler View and Adapter connection
         val recyclerListView: RecyclerView = findViewById(R.id.recyclerListView)
         val layoutManager = LinearLayoutManager(this)
         recyclerListView.layoutManager = layoutManager
         recyclerListView.adapter = adapter
-
-        //Delete Item
 
     }
 

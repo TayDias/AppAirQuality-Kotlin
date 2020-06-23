@@ -32,9 +32,6 @@ class TesteCadastroActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, data)
                 finish()
             }
-            else {
-                //lançar exception e mensagem na tela
-            }
         }
     }
 }

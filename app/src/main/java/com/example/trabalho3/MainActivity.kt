@@ -39,6 +39,20 @@ class MainActivity : AppCompatActivity() {
         //Database request
         list.addAll(locationDao!!.all())
 
+        //Delete Item
+        val bundle = intent.extras
+        val op: String? = bundle?.getString("op")
+
+        if(op.toString() == "delete") {
+            val location = bundle?.get("location") as Location?
+
+            if(location != null) {
+                list.remove(location)
+                locationDao!!.delete(location)
+            }
+            reloadFavoritesCities()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,6 +78,13 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun reloadFavoritesCities () {
+        val intent: Intent = Intent(this, FavoritesActivity::class.java)
+        intent.putExtra("list", list)
+
+        startActivityForResult(intent, 1)
     }
 
     //Apenas para a Tela de Criação Feita para Testes
