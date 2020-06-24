@@ -7,4 +7,15 @@
 
     <string name="edit_Text_Search">Buscar Local</string>
 
+    <string name="action_bookmarks">Favoritos</string>
+    <string name="edit_text_city">Buscar cidade</string>
+    <string name="text_view_msg_air_loc">Qualidade do ar na localização mais próxima</string>
+    <string name="text_view_msg_last_update">Última atualização:</string>
+    <string name="default_city">São Paulo</string>
+    <string name="default_score">90</string>
+    <string name="default_score_name">Ruim</string>
+    <string name="default_score_description">Pessoas de grupos sensíveis (crianças, idosos e pessoas com doenças respiratórias e cardíacas) podem apresentar sintomas como tosse seca e cansaço. A população, em geral, não é afetada.</string>
+    <string name="default_last_update">05/05/2020</string>
+    <string name="add_bookmark">Favoritar</string>
+
 </resources>

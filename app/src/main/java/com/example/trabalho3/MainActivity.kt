@@ -6,7 +6,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
+import android.widget.Toast
 import androidx.room.Room
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.trabalho3.activities.FavoritesActivity
 import com.example.trabalho3.activities.TesteCadastroActivity
 import com.example.trabalho3.classes.location.Location
@@ -16,6 +22,10 @@ import com.example.trabalho3.database.AppDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    var idx: String? = null
+    var aqi: String? = null
+    var city: String? = null
 
     private val list = ArrayList<Location>()
 
@@ -27,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        findCurrentLocation()
 
         database = Room.databaseBuilder(
             this,
@@ -53,6 +65,37 @@ class MainActivity : AppCompatActivity() {
             reloadFavoritesCities()
         }
 
+    }
+
+    private fun findCurrentLocation() {
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val textViewTargetCity: TextView = findViewById(R.id.textViewTargetCity)
+        val textViewLastUpdate: TextView = findViewById(R.id.textViewLastUpdate)
+        val textViewScore: TextView = findViewById(R.id.textViewScore)
+
+        val url = "https://api.waqi.info/feed/here/?&token=${TOKEN}"
+
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                val data = response.getJSONObject("data")
+                city = data.getJSONObject("city").getString("name")
+                aqi = data.getString("aqi")
+                idx = data.getString("idx")
+                val lastUpdate = data.getJSONObject("time").getString("s")
+
+                textViewTargetCity.text = city
+                textViewScore.text = aqi
+                textViewLastUpdate.text = lastUpdate
+
+            },
+            Response.ErrorListener { error ->
+                val toast = Toast.makeText(applicationContext, "Request Error", Toast.LENGTH_LONG)
+                toast.show()
+            }
+        )
+        requestQueue.add(request)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
