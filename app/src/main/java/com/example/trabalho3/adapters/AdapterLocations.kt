@@ -41,6 +41,7 @@ class AdapterLocations (
             var buttonView = holder.itemView.imageButtonDelete
 
             buttonView.setOnClickListener{
+                //Codigo para delete do item da base de dados na MainActivity
                 val intent: Intent = Intent(context, MainActivity::class.java)
                 intent.putExtra("op", "delete")
                 intent.putExtra("location", item)
